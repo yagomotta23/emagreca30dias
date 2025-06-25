@@ -636,29 +636,83 @@
         <script>
             window.jQuery || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"><\/script>')
         </script>
-        <script>
-            !function(f, b, e, v, n, t, s) {
-                if (f.fbq)
-                    return;
-                n = f.fbq = function() {
-                    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-                }
-                ;
-                if (!f._fbq)
-                    f._fbq = n;
-                n.push = n;
-                n.loaded = !0;
-                n.version = '2.0';
-                n.queue = [];
-                t = b.createElement(e);
-                t.async = !0;
-                t.src = v;
-                s = b.getElementsByTagName(e)[0];
-                s.parentNode.insertBefore(t, s)
-            }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '1190903008851061');
-            fbq('track', 'PageView');
-        </script>
+         {/* UTMify Script */}
+        <Script
+          src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+          data-utmify-prevent-xcod-sck
+          data-utmify-prevent-subids
+          async
+          defer
+          strategy="afterInteractive"
+        />
+
+        {/* Meta Pixel Code */}
+        <Script id="facebook-pixel" strategy="afterInteractive">
+          {`
+            try {
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '1829467927614865');
+              fbq('track', 'PageView');
+            } catch (error) {
+              console.warn('Facebook Pixel error:', error);
+            }
+          `}
+        </Script>
+
+        {/* UTMify Pixel */}
+        <Script id="utmify-pixel" strategy="afterInteractive">
+          {`
+            try {
+              window.pixelId = "6852bc80c30b7488087c5ced";
+              var a = document.createElement("script");
+              a.setAttribute("async", "");
+              a.setAttribute("defer", "");
+              a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+              a.onerror = function() {
+                console.warn('UTMify pixel script failed to load');
+              };
+              document.head.appendChild(a);
+            } catch (error) {
+              console.warn('UTMify pixel error:', error);
+            }
+          `}
+        </Script>
+
+        {/* Google Analytics */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-HXCL9WRWCQ" strategy="afterInteractive" async />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            try {
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-HXCL9WRWCQ');
+            } catch (error) {
+              console.warn('Google Analytics error:', error);
+            }
+          `}
+        </Script>
+      </head>
+      <body className={inter.className}>
+        {children}
+
+        {/* Facebook Pixel NoScript */}
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=1829467927614865&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
     </head>
     <body data-rsssl="1" class="wp-singular page-template page-template-elementor_canvas page page-id-10647 wp-theme-hello-elementor elementor-default elementor-template-canvas elementor-kit-5 elementor-page elementor-page-10647">
         <div data-elementor-type="wp-page" data-elementor-id="10647" class="elementor elementor-10647" data-elementor-post-type="page">
